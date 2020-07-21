@@ -25,3 +25,13 @@ steps:
     includesymbols: true
     versioningScheme: 'off'
     verbosityPack: 'Normal'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '828f1941-19f6-43bc-b738-9e077d21677d'
+- task: PublishSymbols@2
+  inputs:
+    SearchPattern: '**/bin/**/*.pdb'
+    SymbolServerType: 'TeamServices'
