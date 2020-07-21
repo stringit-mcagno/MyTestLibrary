@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>String.MyTestLibrary</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Authors>Matteo Cagno</Authors>
+    <Description>This is the descirption</Description>
   </PropertyGroup>
 
 </Project>
