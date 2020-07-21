@@ -24,13 +24,14 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
     verbosityPack: 'Normal'
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '828f1941-19f6-43bc-b738-9e077d21677d'
-    arguments: '--skip-duplicate'
+    allowPackageConflicts: true
+
 - task: PublishSymbols@2
   inputs:
     SearchPattern: '**/bin/**/*.pdb'
