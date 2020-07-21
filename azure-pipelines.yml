@@ -24,11 +24,6 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
     verbosityPack: 'Normal'
-
-
-- script: dotnet nuget push --no-symbols $(Build.ArtifactStagingDirectory)/*.nupkg 
-  displayName: 'dotnet build $(buildConfiguration)'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
