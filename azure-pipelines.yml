@@ -15,8 +15,10 @@ variables:
 
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -24,6 +26,7 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
     verbosityPack: 'Normal'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
