@@ -33,10 +33,5 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '828f1941-19f6-43bc-b738-9e077d21677d'
+    publishVstsFeed: 'b11c8b06-4f4a-4912-9df7-3ff715bc3297'
     allowPackageConflicts: true
-
-- task: PublishSymbols@2
-  inputs:
-    SearchPattern: '**/bin/**/*.pdb'
-    SymbolServerType: 'TeamServices'
