@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>String.MyTestLibrary</PackageId>
-    <PackageVersion>1.0.16-alpha.2020090102</PackageVersion>
+    <PackageVersion>1.0.16-alpha.2020090101.TEST-2</PackageVersion>
     <Authors>Matteo Cagno</Authors>
     <Description>This is the description</Description>
-    <ReleaseVersion>1.0.16-alpha.2020090102</ReleaseVersion>
+    <ReleaseVersion>1.0.16-alpha.2020090101.TEST-2</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
