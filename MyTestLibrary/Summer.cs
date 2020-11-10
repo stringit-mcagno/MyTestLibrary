@@ -8,11 +8,6 @@ namespace MyTestLibrary
         {
             return a + b;
         }
-
-        public int Rum(int a)
-        {
-            //Prova
-            return a;
-        }
+        
     }
 }
