@@ -19,6 +19,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+- task: gitversion/execute@0
+  inputs:
+    useConfigFile: false
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
