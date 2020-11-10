@@ -32,4 +32,4 @@ steps:
   displayName: Run tests
   inputs:
     command: 'test'
-    projects: '*.Test[s].csproj'
+    projects: '**/*.Test[s].csproj'
