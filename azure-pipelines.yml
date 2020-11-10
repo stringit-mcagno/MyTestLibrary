@@ -18,18 +18,39 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: gitversion/setup@0
-  inputs:
-    versionSpec: '5.x'
-- task: gitversion/execute@0
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
-- task: DotNetCoreCLI@2
-  displayName: Run tests
-  inputs:
-    command: 'test'
-    projects: '**/*.Test[s].csproj'
+stages:
+- stage: build
+  displayName: Build and test
+  jobs:
+  - job: Build
+    steps:
+    - task: gitversion/setup@0
+      inputs:
+        versionSpec: '5.x'
+
+    - task: gitversion/execute@0
+
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: 'build'
+        arguments: '--configuration $(buildConfiguration)'
+  - job: Test
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Run tests
+      inputs:
+        command: 'test'
+        projects: '**/*.Test[s].csproj'
+- stage: publish
+  displayName: Publish Nuget package (unstable)
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
+  jobs:
+    - job: Publish
+      steps:
+        - task: DotnetGlobalToolInstaller@0
+          inputs:
+            name: 'sleet'
+        
+
+
