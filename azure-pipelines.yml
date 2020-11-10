@@ -6,32 +6,20 @@
 trigger:
 - master
 - develop
+- release/*
+pr:
+- master
+- develop
+- release/*
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
-
-
 
 steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
-    verbosityPack: 'Normal'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'b11c8b06-4f4a-4912-9df7-3ff715bc3297'
-    allowPackageConflicts: true
