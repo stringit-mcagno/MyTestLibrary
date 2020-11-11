@@ -16,7 +16,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
+- group: Nuget
+- name: buildConfiguration
+  value: 'Release'
 
 stages:
 - stage: build
@@ -61,7 +63,7 @@ stages:
           displayName: Push NuGet package to sleet
           inputs:
             script: |
-              sleet push -c sleet.json $(Build.ArtifactStagingDirectory)/nuget
+              sleet push -c sleet.json -s $(UnstableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
           env:
             AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
             AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
