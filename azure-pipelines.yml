@@ -48,9 +48,23 @@ stages:
   jobs:
     - job: Publish
       steps:
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'pack'
+            packagesToPack: '**/*.csproj;!**/*.Test[s].csproj'
+            includesymbols: true
+            versioningScheme: 'off'
         - task: DotnetGlobalToolInstaller@0
           inputs:
             name: 'sleet'
+        - task: CmdLine@2
+          displayName: Push NuGet package to sleet
+          inputs:
+            script: |
+              sleet push -c sleet.json $(Build.ArtifactStagingDirectory)/nuget
+          env:
+            AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
+            AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
         
 
 
