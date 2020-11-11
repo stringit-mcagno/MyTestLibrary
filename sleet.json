@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "name": "stringit-s3feed",
+      "type": "s3",
+      "bucketName": "stringit-nuget",
+      "region": "eu-west-1",
+      "baseURI":"https://d1a9o7d7fhdqc6.cloudfront.net",
+      "profileName": ""
+    },
+    {
+      "name" : "stringit-stable",
+      "type" : "s3",
+      "bucketName" : "stringit-nuget",
+      "feedSubPath" : "stable/",
+      "region": "eu-west-1",
+      "baseURI":"https://d1a9o7d7fhdqc6.cloudfront.net/stable",
+      "profileName": ""
+    },
+    {
+      "name" : "stringit-unstable",
+      "type" : "s3",
+      "bucketName" : "stringit-nuget",
+      "feedSubPath" : "unstable/",
+      "region": "eu-west-1",
+      "baseURI":"https://d1a9o7d7fhdqc6.cloudfront.net/unstable",
+      "profileName": ""
+    }
+  ]
+}
