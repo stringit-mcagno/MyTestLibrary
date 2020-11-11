@@ -61,10 +61,20 @@ stages:
           inputs:
             name: 'sleet'
         - task: CmdLine@2
-          displayName: Push NuGet package to sleet
+          condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
+          displayName: Push NuGet package to sleet (unstable)
           inputs:
             script: |
               sleet push -c sleet.json -s $(UnstableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
+          env:
+            AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
+            AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
+        - task: CmdLine@2
+          condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+          displayName: Push NuGet package to sleet (stable)
+          inputs:
+            script: |
+              sleet push -c sleet.json -s $(StableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
           env:
             AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
             AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
