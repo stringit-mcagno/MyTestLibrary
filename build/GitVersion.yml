@@ -1,0 +1,17 @@
+mode: ContinuousDelivery
+branches:
+  bugfix:
+    mode: ContinuousDelivery
+    tag: bugfix.{BranchName}
+    increment: None
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    regex: ^bugfix[/-]
+    source-branches: ['release' ]
+    tracks-release-branches: false
+    is-release-branch: false
+    is-mainline: false
+    pre-release-weight: 30000
+ignore:
+  sha: []
+merge-message-formats: {}
