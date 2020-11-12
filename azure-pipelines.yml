@@ -38,7 +38,9 @@ stages:
       displayName: Build
       inputs:
         command: 'build'
-        projects: '**/*.csproj;!**/*.Test[s].csproj'
+        projects: |
+                  **/*.csproj
+                  !**/*.Test[s].csproj
         arguments: '--configuration $(buildConfiguration)'
     - task: DotNetCoreCLI@2
       displayName: Run tests
