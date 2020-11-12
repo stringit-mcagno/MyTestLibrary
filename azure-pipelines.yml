@@ -66,7 +66,7 @@ stages:
           displayName: Push NuGet package to sleet (unstable)
           inputs:
             script: |
-              sleet push -c sleet.json -s $(UnstableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
+              sleet push -c build/sleet.json -s $(UnstableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
           env:
             AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
             AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
@@ -75,7 +75,7 @@ stages:
           displayName: Push NuGet package to sleet (stable)
           inputs:
             script: |
-              sleet push -c sleet.json -s $(StableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
+              sleet push -c build/sleet.json -s $(StableNugetFeedName) $(Build.ArtifactStagingDirectory)/nuget
           env:
             AWS_ACCESS_KEY_ID: $(AWS.AccessKeyID)
             AWS_SECRET_ACCESS_KEY: $(AWS.SecretAccessKey)
