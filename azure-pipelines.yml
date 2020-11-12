@@ -25,9 +25,10 @@ stages:
 - stage: build
   displayName: Build and test
   jobs:
-  - job: Build and test
+  - job: BuildAndTest
     steps:
     - task: gitversion/setup@0
+      displayName: Enable git version 
       inputs:
         versionSpec: '5.x'
 
@@ -51,6 +52,7 @@ stages:
     - job: Publish
       steps:
         - task: DotNetCoreCLI@2
+          displayName: Pack nuget package
           inputs:
             command: 'pack'
             packagesToPack: '**/*.csproj;!**/*.Test[s].csproj'
@@ -58,6 +60,7 @@ stages:
             includesymbols: true
             versioningScheme: 'off'
         - task: DotnetGlobalToolInstaller@0
+          displayName: Enable sleet
           inputs:
             name: 'sleet'
         - task: CmdLine@2
