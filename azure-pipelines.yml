@@ -33,6 +33,10 @@ stages:
         versionSpec: '5.x'
 
     - task: gitversion/execute@0
+      displayName: Execute git version
+      inputs:
+        useConfigFile: true
+        configFilePath: 'build/GitVersion.yml'
 
     - task: DotNetCoreCLI@2
       displayName: Build
