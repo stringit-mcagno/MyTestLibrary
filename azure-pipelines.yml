@@ -25,7 +25,7 @@ stages:
 - stage: build
   displayName: Build and test
   jobs:
-  - job: Build
+  - job: Build and test
     steps:
     - task: gitversion/setup@0
       inputs:
@@ -37,16 +37,15 @@ stages:
       displayName: Build
       inputs:
         command: 'build'
+        projects: '**/*.csproj;!**/*.Test[s].csproj'
         arguments: '--configuration $(buildConfiguration)'
-  - job: Test
-    steps:
     - task: DotNetCoreCLI@2
       displayName: Run tests
       inputs:
         command: 'test'
         projects: '**/*.Test[s].csproj'
 - stage: publish
-  displayName: Publish Nuget package (unstable)
+  displayName: Publish Nuget package
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
   jobs:
     - job: Publish
