@@ -17,6 +17,7 @@ pool:
 
 variables:
 - group: Nuget
+- group: AWS
 - name: buildConfiguration
   value: 'Release'
 
