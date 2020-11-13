@@ -21,12 +21,15 @@ variables:
 - name: buildConfiguration
   value: 'Release'
 - name: isStable
-  ${{ if eq(variables['build.sourceBranchName'], 'developz') }}:
-    value: 'pino'
   ${{ if eq(variables['build.sourceBranchName'], 'master') }}:
-    value: 'masterpino'
-  ${{ if ne(variables['build.sourceBranchName'], 'developz') }}:
-    value: 'pinolt'
+    value: true
+  ${{ if ne(variables['build.sourceBranchName'], 'master') }}:
+    value: false
+- name: anotherVar
+  ${{ if eq(variables['isStable'], true) }}:
+    value: 'ciao'
+  ${{ if ne(variables['isStable'], true)}}:
+    value: 'ciriciao'
 
 stages:
 - stage: build
@@ -35,7 +38,8 @@ stages:
   - job: BuildAndTest
     steps:
     - script: |
-        echo ${{variables.isStable}} 
+        echo ${{variables.isStable}}
+        echo ${{variables.anotherVar}}
     - task: gitversion/setup@0
       displayName: Enable git version 
       inputs:
