@@ -20,6 +20,8 @@ variables:
 - group: AWS
 - name: buildConfiguration
   value: 'Release'
+- name: isStable
+  value: $[eq(variables['build.sourceBranchName'], 'master')]
 
 stages:
 - stage: build
@@ -27,6 +29,8 @@ stages:
   jobs:
   - job: BuildAndTest
     steps:
+    - script: |
+        echo ${{variables.isStable}} 
     - task: gitversion/setup@0
       displayName: Enable git version 
       inputs:
