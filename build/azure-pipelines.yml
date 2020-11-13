@@ -21,9 +21,9 @@ variables:
 - name: buildConfiguration
   value: 'Release'
 - name: isStable
-  ${{if eq(variables['build.sourceBranchName'], 'develop'}}:
+  ${{ if eq(variables['build.sourceBranchName'], 'develop') }}:
     value: 'pino'
-  ${{if eq(variables['build.sourceBranchName'], 'master'}}:
+  ${{ if eq(variables['build.sourceBranchName'], 'master') }}:
     value: 'masterpino'
 
 stages:
